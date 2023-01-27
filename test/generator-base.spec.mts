@@ -9,6 +9,7 @@ import Base from '../generators/base/index.mjs';
 import { testInTempDir, revertTempDir } from './support/temp-dir.mjs';
 import { parseChangelog } from '../generators/base/utils.mjs';
 import { databaseTypes } from '../jdl/jhipster/index.mjs';
+import { Logger } from '../generators/base/support/logging.mjs';
 
 const { POSTGRESQL } = databaseTypes;
 
@@ -19,33 +20,9 @@ BaseGenerator.log = msg => {
   console.log(msg);
 };
 
+BaseGenerator.logger = new Logger(BaseGenerator.log);
+
 describe('generator - base', () => {
-  describe('getAllSupportedLanguages', () => {
-    describe('when called', () => {
-      it('returns an array', () => {
-        expect(BaseGenerator.getAllSupportedLanguages()).to.not.have.length(0);
-      });
-    });
-  });
-  describe('isSupportedLanguage', () => {
-    describe('when called with valid language', () => {
-      it('returns true', () => {
-        expect(BaseGenerator.isSupportedLanguage('en')).to.be.true;
-      });
-    });
-    describe('when called with invalid language', () => {
-      it('returns false', () => {
-        expect(BaseGenerator.isSupportedLanguage('ab')).to.equal(false);
-      });
-    });
-  });
-  describe('getAllSupportedLanguageOptions', () => {
-    describe('when called', () => {
-      it('returns an array', () => {
-        expect(BaseGenerator.getAllSupportedLanguages()).to.not.have.length(0);
-      });
-    });
-  });
   describe('getTableName', () => {
     describe('when called with a value', () => {
       it('returns a table name', () => {
